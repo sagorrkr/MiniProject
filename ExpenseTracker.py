@@ -17,3 +17,11 @@ class ExpenseTracker:
         expense = Expense(amount, category, date)
         self.expense.append(expense)
         print(f"Added Expense: {expense}")
+        
+    def display_expense(self):
+        if not self.expenses:
+            print("No Expense to display. ")
+        else:
+            print("\nAll expense: ")
+            for expense in self.expenses:
+                print(expense)
