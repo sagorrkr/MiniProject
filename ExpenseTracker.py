@@ -1,8 +1,8 @@
 
 class Expense:
-    def __init__(self, amount, caategory, date = None):
+    def __init__(self, amount, category, date = None):
         self.amount = float(amount)
-        self.category = caategory.lower()
+        self.category = category.lower()
 #        self.date = date if date else datetime.now().strftime("%Y-%M-%D")
         
     def __str__(self):
@@ -17,7 +17,7 @@ class ExpenseTracker:
         expense = Expense(amount, category, date)
         self.expense.append(expense)
         print(f"Added Expense: {expense}")
-        
+
     def display_expense(self):
         if not self.expenses:
             print("No Expense to display. ")
@@ -25,3 +25,18 @@ class ExpenseTracker:
             print("\nAll expense: ")
             for expense in self.expenses:
                 print(expense)
+
+    def total_by_category(self):
+        if not self.expenses:
+            print("No expense to show/summerize")
+            return
+        category_total = {}
+        for expense in self.expenses:
+            category_total[expense.category] = category_total.get(expense.category, 0) + expense.amount
+
+        print("\nTotal spendings by category: ")
+        for category , total in category_total.items():
+            print(f"{category.capitalize()}: {total:.2f}")
+
+    def total_expense(self):
+        return sum(expense.amount for expense in self.expenses)
