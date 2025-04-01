@@ -48,3 +48,19 @@ class ExpenseTracker:
                 print(f"Warning! total spendings {total:.2f} exceeds budget limit {self.budget_limit:.2f}!")
             else:
                 print(f"Total spending {total:.2f}. Remaining budget {self.budget_limit - total:.2f}")
+
+
+def main():
+    tracker = ExpenseTracker(budget_limit=100)
+
+    while True:
+        print("\nExpense Tracker Menu: ")
+        print("1. Add an Expense. ")
+        print("2. Display all expense. ")
+        print("3. Show total spendings by category. ")
+        print("4. Exit. ")
+
+        choice = input("Enter your choice(1-4): ")
+
+        
+        
