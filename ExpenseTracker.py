@@ -40,3 +40,11 @@ class ExpenseTracker:
 
     def total_expense(self):
         return sum(expense.amount for expense in self.expenses)
+    
+    def check_budget(self):
+        if self.budget_limit:
+            total = self.total_spending()
+            if total > self.budget_limit:
+                print(f"Warning! total spendings {total:.2f} exceeds budget limit {self.budget_limit:.2f}!")
+            else:
+                print(f"Total spending {total:.2f}. Remaining budget {self.budget_limit - total:.2f}")
