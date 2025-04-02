@@ -1,9 +1,9 @@
-
+from datetime import datetime
 class Expense:
     def __init__(self, amount, category, date = None):
         self.amount = float(amount)
         self.category = category.lower()
-#        self.date = date if date else datetime.now().strftime("%Y-%M-%D")
+        self.date = date if date else datetime.now().strftime("%Y-%M-%D")
         
     def __str__(self):
         return f" {self.date} - {self.category.capitalize()}: {self.amount:.2f} "
@@ -15,10 +15,10 @@ class ExpenseTracker:
 
     def add_expense(self, amount, category, date = None):
         expense = Expense(amount, category, date)
-        self.expense.append(expense)
+        self.expenses.append(expense)
         print(f"Added Expense: {expense}")
 
-    def display_expense(self):
+    def display_expenses(self):
         if not self.expenses:
             print("No Expense to display. ")
         else:
@@ -43,7 +43,7 @@ class ExpenseTracker:
     
     def check_budget(self):
         if self.budget_limit:
-            total = self.total_spending()
+            total = self.total_expense()
             if total > self.budget_limit:
                 print(f"Warning! total spendings {total:.2f} exceeds budget limit {self.budget_limit:.2f}!")
             else:
@@ -73,12 +73,12 @@ def main():
                 print("Invalid Value. Please type a valid integer(1-4)")
 
         elif choice == "2":
-            tracker.display_expense()
+            tracker.display_expenses()
         elif choice == "3":
             tracker.total_by_category()
         elif choice == "4":
             print("Goodbye! Here is your final summery. ")
-            tracker.display_expense()
+            tracker.display_expenses()
             tracker.total_by_category()
             break
         else:
