@@ -62,5 +62,28 @@ def main():
 
         choice = input("Enter your choice(1-4): ")
 
-        
-        
+        if choice == "1":
+            try:
+                amount = float(input("Enter the expense amount: "))
+                category = input("Enter category: ")
+                date = input("Enter date(DD-MM-YYYY): ") or None
+                tracker.add_expense(amount, category, date)
+
+            except ValueError:
+                print("Invalid Value. Please type a valid integer(1-4)")
+
+        elif choice == "2":
+            tracker.display_expense()
+        elif choice == "3":
+            tracker.total_by_category()
+        elif choice == "4":
+            print("Goodbye! Here is your final summery. ")
+            tracker.display_expense()
+            tracker.total_by_category()
+            break
+        else:
+            print("Invalid input. Please try again (1-4)")
+
+if __name__ == "__main__":
+    main()
+
