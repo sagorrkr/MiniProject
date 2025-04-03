@@ -18,4 +18,10 @@ class GroceryItem:
 class GroceryList:
     def __init__(self):
         self.items = []
-        
+
+    def add_items(self, name, quantity = 1):
+        for item in self.items:
+            if item.name.lower() == name.lower() and not name.bought:
+                item.quantity += quantity 
+                print(f"Updated {name} quantity to {item.quantity}")
+                return
