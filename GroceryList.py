@@ -25,3 +25,13 @@ class GroceryList:
                 item.quantity += quantity 
                 print(f"Updated {name} quantity to {item.quantity}")
                 return
+        new_item = GroceryItem(name, quantity)
+        self.items.append(new_item)
+        print(f"Added {name} (Qty: {quantity}) to the list. ")
+
+    def mark_bought(self, name):
+        for item in self.items:
+            if item.name.lower() == name.lower():
+                item.mark_bought()
+                return
+        print(f"{name} not found in the list. ")
