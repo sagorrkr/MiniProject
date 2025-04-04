@@ -41,6 +41,13 @@ class GroceryList:
             print("Your grocery list is empty. ")
         else:
             print("\nGrocery List:")
+            print('To buy')
             for item in self.items:
                 if not item.bought():
                     print(item)
+            print("Bought:")
+            for item in self.items:
+                if item.bought():
+                    print(item)
+
+
