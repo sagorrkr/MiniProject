@@ -35,3 +35,12 @@ class GroceryList:
                 item.mark_bought()
                 return
         print(f"{name} not found in the list. ")
+
+    def display_list(self):
+        if not self.items:
+            print("Your grocery list is empty. ")
+        else:
+            print("\nGrocery List:")
+            for item in self.items:
+                if not item.bought():
+                    print(item)
