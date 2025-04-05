@@ -50,4 +50,12 @@ class GroceryList:
                 if item.bought():
                     print(item)
 
- 
+    def clear_bought(self):
+        self.items = [item for item in self.items if not item.bought]
+        print("Cleared all the bought items from the list. ")
+
+def main():
+    grocery_list = GroceryList()
+
+    while True:
+        print("\nGrocery List Menu")
