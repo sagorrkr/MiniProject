@@ -59,3 +59,11 @@ def main():
 
     while True:
         print("\nGrocery List Menu")
+        print("\nGrocery List Menu:")
+        print("1. Add an item")
+        print("2. Mark an item as bought")
+        print("3. Display list")
+        print("4. Clear bought items")
+        print("5. Exit")
+    
+        choice = input("Enter your choice (1-5): ")
