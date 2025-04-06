@@ -67,3 +67,12 @@ def main():
         print("5. Exit")
     
         choice = input("Enter your choice (1-5): ")
+
+        if choice == 1:
+            name = input("Enter item name: ")
+            try:
+                quantity = int(input("Enter the quantity(Default 1)") or 1)
+                grocery_list.add_items(name, quantity)
+            except ValueError:
+                print("Invalid Quantity. Using 1 insteead")
+                grocery_list.add_items(name, 1)
