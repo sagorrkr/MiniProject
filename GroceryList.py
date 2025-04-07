@@ -39,15 +39,16 @@ class GroceryList:
     def display_list(self):
         if not self.items:
             print("Your grocery list is empty. ")
+            return
         else:
             print("\nGrocery List:")
             print('To buy')
             for item in self.items:
-                if not item.bought():
+                if not item.bought:
                     print(item)
             print("Bought:")
             for item in self.items:
-                if item.bought():
+                if item.bought:
                     print(item)
 
     def clear_bought(self):
@@ -68,7 +69,7 @@ def main():
     
         choice = input("Enter your choice (1-5): ")
 
-        if choice == 1:
+        if choice == "1":
             name = input("Enter item name: ")
             try:
                 quantity = int(input("Enter the quantity(Default 1)") or 1)
@@ -77,9 +78,21 @@ def main():
                 print("Invalid Quantity. Using 1 insteead")
                 grocery_list.add_items(name, 1)
 
-        elif choice == 2:
+        elif choice == "2":
             name = input("Enter the item name to mark bought: ")
             grocery_list.mark_bought(name)
         
-        elif choice == 3:
+        elif choice == "3":
             grocery_list.display_list()
+
+        elif choice == "4":
+            grocery_list.clear_bought()
+        elif choice == "5":
+            print("GoodBye! Here's your final list: ")
+            grocery_list.display_list()
+            break
+        else:
+            print("Invalid Input. Please try again(1-5)")
+    
+if __name__ == "__main__":
+    main()
