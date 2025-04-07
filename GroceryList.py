@@ -76,3 +76,10 @@ def main():
             except ValueError:
                 print("Invalid Quantity. Using 1 insteead")
                 grocery_list.add_items(name, 1)
+
+        elif choice == 2:
+            name = input("Enter the item name to mark bought: ")
+            grocery_list.mark_bought(name)
+        
+        elif choice == 3:
+            grocery_list.display_list()
