@@ -1,7 +1,7 @@
 class Student:
     def __init__(self,name):
         self.name = name
-        self.grade = []
+        self.grades = []
 
     def add_grade(self, grade):
         try:
@@ -13,6 +13,12 @@ class Student:
                 print("Grade must be between 0 to 100")
         except ValueError:
             print("Invalid Grade! Please enter a number ")
+    
+    def calculate_averafe(self):
+        if not self.grades:
+            return 0
+        else:
+            return sum(self.grades) / len(self.grades)
 
     
 class GradeTracker:
@@ -27,3 +33,5 @@ class GradeTracker:
         new_student = Student(name)
         self.students.append(new_student)
         print(f"Student Added: {name}")
+
+    
