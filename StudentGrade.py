@@ -63,3 +63,7 @@ def main():
         print("2. Add a grade")
         print("3. Display all students")
         print("1. Exit")
+
+        choice = input("Enter your choice(1-4)")
+
+    
