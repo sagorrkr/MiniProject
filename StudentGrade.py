@@ -46,3 +46,20 @@ class GradeTracker:
             else:
                 print(f"Student {name} not found. ")
     
+    def display_all(self):
+        if not self.students:
+            print(f"No students in the tracker.")
+        else:
+            print("Student grade summery")
+            for student in self.students:
+                print(student)
+
+def main():
+    tracker = GradeTracker()
+
+    while True:
+        print("\nGrade Tracker Menu")
+        print("1. Add a student")
+        print("2. Add a grade")
+        print("3. Display all students")
+        print("1. Exit")
