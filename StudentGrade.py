@@ -14,11 +14,15 @@ class Student:
         except ValueError:
             print("Invalid Grade! Please enter a number ")
     
-    def calculate_averafe(self):
+    def calculate_average(self):
         if not self.grades:
             return 0
         else:
             return sum(self.grades) / len(self.grades)
+    
+    def __str__(self):
+        avg = self.calculate_average()
+        return f"Name: {self.name}, Grades: {self.grades}, Agerage: {avg:.2f}"
 
     
 class GradeTracker:
@@ -34,4 +38,11 @@ class GradeTracker:
         self.students.append(new_student)
         print(f"Student Added: {name}")
 
+    def add_grade(self, name, grade):
+        for student in self.students:
+            if student.name.lower() == name.lower():
+                student.add_grade(grade)
+                return
+            else:
+                print(f"Student {name} not found. ")
     
