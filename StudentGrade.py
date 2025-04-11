@@ -7,7 +7,7 @@ class Student:
         try:
             grade = float(grade)
             if 0 <= grade <= 100:
-                self.grade.append(grade)
+                self.grades.append(grade)
                 print(f"Added grade {grade} for {self.name}")
             else: 
                 print("Grade must be between 0 to 100")
@@ -22,7 +22,7 @@ class Student:
     
     def __str__(self):
         avg = self.calculate_average()
-        return f"Name: {self.name}, Grades: {self.grades}, Agerage: {avg:.2f}"
+        return f"Name: {self.name}, Grades: {self.grades}, Average: {avg:.2f}"
 
     
 class GradeTracker:
@@ -62,8 +62,30 @@ def main():
         print("1. Add a student")
         print("2. Add a grade")
         print("3. Display all students")
-        print("1. Exit")
+        print("4. Exit")
 
         choice = input("Enter your choice(1-4)")
 
-    
+        if choice == "1":
+                name = input("Enter student name: ")
+                tracker.add_student(name)
+
+        elif choice == "2":
+            name = input("Enter student name: ")
+            grade = input("Enter grade (0-100): ")
+            tracker.add_grade(name, grade)
+
+        elif choice == "3":
+            tracker.display_all()
+
+        elif choice == "4":
+            print("Goodbye! Final summary:")
+            tracker.display_all()
+            break
+
+        else:
+            print("Invalid choice. Please try again (1-4).")
+
+
+if __name__ == "__main__":
+    main()
