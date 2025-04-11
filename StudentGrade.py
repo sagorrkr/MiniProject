@@ -43,8 +43,8 @@ class GradeTracker:
             if student.name.lower() == name.lower():
                 student.add_grade(grade)
                 return
-            else:
-                print(f"Student {name} not found. ")
+        
+        print(f"Student {name} not found. ")
     
     def display_all(self):
         if not self.students:
