@@ -23,3 +23,12 @@ class Contact:
 class ContactBook:
     def __init__(self):
         self.contacts = []
+
+    def add_contact(self, name, phone, email, address):
+        for contact in self.contacts:
+            if contact.name.lower() == name.lower():
+                print(f"Contact {name} already exists")
+                return
+        new_contact = Contact(name, phone, email, address)
+        self.contacts.append(new_contact)
+        print(f"Added contact {name}")
