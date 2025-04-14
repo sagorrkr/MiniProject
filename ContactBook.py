@@ -32,3 +32,11 @@ class ContactBook:
         new_contact = Contact(name, phone, email, address)
         self.contacts.append(new_contact)
         print(f"Added contact {name}")
+
+    def update_contact(self, name, phone = None, email = None, address = None):
+        for contact in self.contacts:
+            if contact.name.lower() == name.lower():
+                contact.update(phone, email, address)
+                return
+        print(f"Contact name {name} not found. ")
+            
