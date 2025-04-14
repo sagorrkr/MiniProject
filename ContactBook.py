@@ -40,3 +40,4 @@ class ContactBook:
                 return
         print(f"Contact name {name} not found. ")
             
+    def search_contact(self,name):
