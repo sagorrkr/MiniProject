@@ -41,3 +41,26 @@ class ContactBook:
         print(f"Contact name {name} not found. ")
             
     def search_contact(self,name):
+        for contact in self.contacts:
+            if contact.name.lower() == name.lower():
+                print("\nContact Found.")
+                print(contact)
+                return
+        print(f"Contact {name} not found. ")
+
+    def display_all(self):
+        if not self.contacts:
+            print("No contact to display. ")
+        else:
+            print("All contact: ")
+            for contact in self.contacts:
+                print("-" * 30)
+                print(contact)
+
+    def delete_contact(self, name):
+        for contact in self.contacts:
+            if contact.name.lower() == name.lower():
+                self.contacts.remove(name)
+                print(f"Contact {name} has been removed from the list.")
+        print(f"Contact {name} not found.")
+
