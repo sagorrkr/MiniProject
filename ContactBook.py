@@ -64,3 +64,17 @@ class ContactBook:
                 print(f"Contact {name} has been removed from the list.")
         print(f"Contact {name} not found.")
 
+
+def main():
+    book = ContactBook()
+
+    while True:
+            print("\nPersonal Contact Book Menu:")
+            print("1. Add a contact")
+            print("2. Update a contact")
+            print("3. Search for a contact")
+            print("4. Display all contacts")
+            print("5. Delete a contact")
+            print("6. Exit")
+
+            choice = input("Enter your choice(1-6):")
