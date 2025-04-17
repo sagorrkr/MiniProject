@@ -78,3 +78,10 @@ def main():
             print("6. Exit")
 
             choice = input("Enter your choice(1-6):")
+
+            if choice == "1":
+                name = input("Enter name: ")
+                phone = input("Enter phone number: ")
+                email = input("Enter email: ")
+                address = input("Enter address: ")
+                book.add_contact(name, phone, email, address)
