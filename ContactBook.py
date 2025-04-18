@@ -91,3 +91,7 @@ def main():
                 email = input("Enter new email (press Enter to skip): ") or None
                 address = input("Enter new address (press Enter to skip): ") or None
                 book.update_contact(name, phone, email, address)
+            
+            elif choice == "3":
+                name = input("Enter name to search: ")
+                book.search_contact(name)
