@@ -85,3 +85,9 @@ def main():
                 email = input("Enter email: ")
                 address = input("Enter address: ")
                 book.add_contact(name, phone, email, address)
+            elif choice == "2":
+                name = input("Enter name of contact to update: ")
+                phone = input("Enter new phone number (press Enter to skip): ") or None
+                email = input("Enter new email (press Enter to skip): ") or None
+                address = input("Enter new address (press Enter to skip): ") or None
+                book.update_contact(name, phone, email, address)
