@@ -96,9 +96,23 @@ def main():
             elif choice == "3":
                 name = input("Enter name to search: ")
                 book.search_contact(name)
+
             elif choice == "4":
                 book.display_all()
 
             elif choice == "5":
                 name = input("Enter name of contact to delete: ")
                 book.delete_contact(name)
+            
+            elif choice == "6":
+                print("Goodbye! Final contact list:")
+                book.display_all()
+                break
+
+            else:
+                print("Invalid choice. Please try again (1-6).")
+
+
+
+if __name__ == "__main__":
+    main()
