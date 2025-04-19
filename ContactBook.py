@@ -85,6 +85,7 @@ def main():
                 email = input("Enter email: ")
                 address = input("Enter address: ")
                 book.add_contact(name, phone, email, address)
+
             elif choice == "2":
                 name = input("Enter name of contact to update: ")
                 phone = input("Enter new phone number (press Enter to skip): ") or None
@@ -95,3 +96,9 @@ def main():
             elif choice == "3":
                 name = input("Enter name to search: ")
                 book.search_contact(name)
+            elif choice == "4":
+                book.display_all()
+
+            elif choice == "5":
+                name = input("Enter name of contact to delete: ")
+                book.delete_contact(name)
