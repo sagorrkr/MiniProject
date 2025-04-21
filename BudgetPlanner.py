@@ -12,3 +12,20 @@ class Transaction:
     def __str__(self):
         return f"{self.date} - {self.type.capitalize()} ({self.category.capitalize()}): ${self.amount:.2f}"
 
+class BudgetPlanner:
+    def __init__(self, budget_limit):
+        self.transactions = []
+        self.budget_limit = float(budget_limit)
+
+    def add_transaction(self, amount, type, category,date = None):
+        valid_type = ["income", "expense"]
+        if type.lower() not in valid_type():
+            print(f"Invalid type! use: {', ' .join(valid_type)}")
+            return
+        try:
+            amount = float(amount)
+            if amount <= 0:
+                print("Invalid amount. Amount must be a positive number")
+        except ValueError:
+            print("Invalid Value. Please Enter a number")
+
