@@ -22,10 +22,16 @@ class BudgetPlanner:
         if type.lower() not in valid_type():
             print(f"Invalid type! use: {', ' .join(valid_type)}")
             return
+        new_transaction = Transaction(amount, type, category, date)
+        self.transactions.append(new_transaction)
+        print(f"Added transaction: {new_transaction}")
+        self.check_budget()
         try:
             amount = float(amount)
             if amount <= 0:
                 print("Invalid amount. Amount must be a positive number")
         except ValueError:
             print("Invalid Value. Please Enter a number")
+
+    def check_budget(self):
 
