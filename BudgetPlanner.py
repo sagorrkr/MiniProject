@@ -33,5 +33,9 @@ class BudgetPlanner:
         except ValueError:
             print("Invalid Value. Please Enter a number")
 
-    def check_budget(self):
+    def calculate_balance(self):
+        income = sum(t.amount for t in self.transactions if t.type == "income")
+        expenses = sum(t.amount for t in self.transactions if t.type == "expense")
+        return income - expenses
 
+    def check_budget(self):
