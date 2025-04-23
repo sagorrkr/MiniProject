@@ -39,3 +39,8 @@ class BudgetPlanner:
         return income - expenses
 
     def check_budget(self):
+        expenses = sum(t.amount for t in self.transactions if t.type == "expense")
+        if expenses > self.budget_limit:
+            print(f"WARNING: Expenses (${expenses:.2f}) exceed budget limit (${self.budget_limit:.2f})!")
+        else:
+            print(f"Expenses: ${expenses:.2f}. Budget remaining: ${self.budget_limit - expenses:.2f}")
