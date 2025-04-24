@@ -22,6 +22,7 @@ class BudgetPlanner:
         if type.lower() not in valid_type():
             print(f"Invalid type! use: {', ' .join(valid_type)}")
             return
+        
         new_transaction = Transaction(amount, type, category, date)
         self.transactions.append(new_transaction)
         print(f"Added transaction: {new_transaction}")
