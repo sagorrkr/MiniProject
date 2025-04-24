@@ -44,3 +44,13 @@ class BudgetPlanner:
             print(f"WARNING: Expenses (${expenses:.2f}) exceed budget limit (${self.budget_limit:.2f})!")
         else:
             print(f"Expenses: ${expenses:.2f}. Budget remaining: ${self.budget_limit - expenses:.2f}")
+
+    def display_transactions(self):
+        if not self.transactions:
+            print("No transactions recorded.")
+            return
+        print("\nAll Transactions:")
+        print("Income:")
+        for t in self.transactions:
+            if t.type == "income":
+                print(t)
