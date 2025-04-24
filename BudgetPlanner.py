@@ -55,3 +55,9 @@ class BudgetPlanner:
         for t in self.transactions:
             if t.type == "income":
                 print(t)
+
+        print("Expenses:")
+        for t in self.transactions:
+            if t.type == "expense":
+                print(t)
+        print(f"Current Balance: ${self.calculate_balance():.2f}")
