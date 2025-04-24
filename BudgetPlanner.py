@@ -61,3 +61,4 @@ class BudgetPlanner:
             if t.type == "expense":
                 print(t)
         print(f"Current Balance: ${self.calculate_balance():.2f}")
+
