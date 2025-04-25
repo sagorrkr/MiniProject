@@ -75,4 +75,4 @@ class BudgetPlanner:
         else:
             print("\nExpense Summary by Category:")
             for category, total in category_totals.items():
-                print(f"{category.capitalize()}: ${total:.2f}")
+                print(f"{category.capitalize()}: ${total:.2f}") 
