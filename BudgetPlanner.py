@@ -62,3 +62,8 @@ class BudgetPlanner:
                 print(t)
         print(f"Current Balance: ${self.calculate_balance():.2f}")
 
+    def category_summary(self):
+        if not self.transactions:
+            print("No transactions to summarize.")
+            return
+        category_totals = {}
