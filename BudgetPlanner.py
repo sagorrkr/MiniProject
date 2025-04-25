@@ -67,3 +67,12 @@ class BudgetPlanner:
             print("No transactions to summarize.")
             return
         category_totals = {}
+        for t in self.transactions:
+            if t.type == "expense":
+                category_totals[t.category] = category_totals.get(t.category, 0) + t.amount
+        if not category_totals:
+            print("No expenses to summarize.")
+        else:
+            print("\nExpense Summary by Category:")
+            for category, total in category_totals.items():
+                print(f"{category.capitalize()}: ${total:.2f}")
