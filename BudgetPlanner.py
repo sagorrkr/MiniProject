@@ -76,3 +76,11 @@ class BudgetPlanner:
             print("\nExpense Summary by Category:")
             for category, total in category_totals.items():
                 print(f"{category.capitalize()}: ${total:.2f}") 
+
+def main():
+    try:
+        budget_limit = float(input("Enter your monthly budget limit: $"))
+        planner = BudgetPlanner(budget_limit) 
+    except ValueError:
+        print("Invalid budget! Using $500 as default.")
+        planner = BudgetPlanner(500)
