@@ -83,4 +83,4 @@ def main():
         planner = BudgetPlanner(budget_limit) 
     except ValueError:
         print("Invalid budget! Using $500 as default.")
-        planner = BudgetPlanner(500)
+        planner = BudgetPlanner(500) 
