@@ -84,7 +84,7 @@ def main():
     except ValueError:
         print("Invalid budget! Using $500 as default.")
         planner = BudgetPlanner(500) 
-        
+
     while True:
         print("\nBudget Planner Menu:")
         print("1. Add a transaction")
@@ -93,3 +93,10 @@ def main():
         print("4. Exit")
 
         choice = input("Enter your choice (1-4): ")
+
+        if choice == "1":
+            type = input("Enter type(Income/expense)")
+            amount = input("Enter amount")
+            category = input("Enter category(salary/groceriss/cloths)")
+            date = input("Enter date(DD-MM-YYYY) or press 'Enter' for today") or None
+            planner(amount, type, category, date)
