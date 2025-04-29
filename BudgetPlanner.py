@@ -100,3 +100,16 @@ def main():
             category = input("Enter category(salary/groceriss/cloths)")
             date = input("Enter date(DD-MM-YYYY) or press 'Enter' for today") or None
             planner(amount, type, category, date)
+
+        elif choice == "2":
+            planner.display_transactions()
+
+        elif choice == "3":
+            planner.category_summary()
+
+        elif choice == "4":
+            print("Goodbye! Final financial summary:")
+            planner.display_transactions()
+            planner.category_summary()
+            break
+
