@@ -112,4 +112,5 @@ def main():
             planner.display_transactions()
             planner.category_summary()
             break
-
+        else:
+            print("Invalid choice. Please try again(1-4)")
