@@ -18,9 +18,9 @@ class BudgetPlanner:
         self.budget_limit = float(budget_limit)
 
     def add_transaction(self, amount, type, category,date = None):
-        valid_type = ["income", "expense"]
-        if type.lower() not in valid_type():
-            print(f"Invalid type! use: {', ' .join(valid_type)}")
+        valid_types = ["income", "expense"]
+        if type.lower() not in valid_types:
+            print(f"Invalid type! Use: {', '.join(valid_types)}.")
             return
         
         new_transaction = Transaction(amount, type, category, date)
@@ -31,8 +31,10 @@ class BudgetPlanner:
             amount = float(amount)
             if amount <= 0:
                 print("Invalid amount. Amount must be a positive number")
+                return
         except ValueError:
             print("Invalid Value. Please Enter a number")
+            return
 
     def calculate_balance(self):
         income = sum(t.amount for t in self.transactions if t.type == "income")
@@ -97,9 +99,9 @@ def main():
         if choice == "1":
             type = input("Enter type(Income/expense)")
             amount = input("Enter amount")
-            category = input("Enter category(salary/groceriss/cloths)")
+            category = input("Enter category(salary/groceries/cloths)")
             date = input("Enter date(DD-MM-YYYY) or press 'Enter' for today") or None
-            planner(amount, type, category, date)
+            planner.add_transaction(amount, type, category, date)
 
         elif choice == "2":
             planner.display_transactions()
