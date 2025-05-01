@@ -1,5 +1,4 @@
 #managing personal finances
-
 from datetime import datetime
 
 class Transaction:
@@ -22,7 +21,6 @@ class BudgetPlanner:
         if type.lower() not in valid_types:
             print(f"Invalid type! Use: {', '.join(valid_types)}.")
             return
-        
         new_transaction = Transaction(amount, type, category, date)
         self.transactions.append(new_transaction)
         print(f"Added transaction: {new_transaction}")
