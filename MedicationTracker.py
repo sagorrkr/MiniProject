@@ -22,3 +22,6 @@ class Medication:
         self.last_taken = now
         print(f"Recorded dose of {self.name}. Stock left: {self.stock} doses.")
         
+    def is_due(self):
+        if not self.last_taken:
+            return True
