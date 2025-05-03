@@ -14,3 +14,11 @@ class Medication:
         if self.last_taken and self.last_taken.date() == today and self.frequency == "daily":
             print(f"{self.name} already taken today. ") 
             return
+        if self.stock <= 0:
+            print(f"No stock left for {self.name}. Time to refill!")
+            return
+
+        self.stock -= 1
+        self.last_taken = now
+        print(f"Recorded dose of {self.name}. Stock left: {self.stock} doses.")
+        
