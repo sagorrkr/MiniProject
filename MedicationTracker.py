@@ -44,14 +44,33 @@ class Medication:
     
 class MedicationTracker:
     def __init__(self):
-        self.medication = []
+        self.medications = []
 
     def add_medication(self, name, dosage, frequency, stock):
         valid_frequencies = ["daily", "twice_daily"]
         if frequency.lower() not in valid_frequencies:
             print(f"Invalid frequency. Use: {', '.join(valid_frequencies)}.")
             return
-        for med in self.medication:
+        for med in self.medications:
             if med.name.lower() == name.lower():
                 print(f"Medication {name} already exist.")
+                return  
+        try:
+            stock = int(stock)
+            if stock < 0:
+                print("Stock can't be negative.")
                 return
+        except ValueError:
+            print("Invalid stock. Please enter a number.")
+            return
+        new_med = Medication(name, dosage, frequency, stock)
+        self.medications.append(new_med)
+        print(f"Added Medication: {name}")
+
+    def take_dose(self, name):
+        for med in self.medications:
+            if med.name.lower() == name.lower():
+                med.take_dose()
+                return
+        print(f"Medication {name} not found.")
+
