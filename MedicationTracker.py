@@ -25,3 +25,20 @@ class Medication:
     def is_due(self):
         if not self.last_taken:
             return True
+        now = datetime.now()
+        last = self.last_taken
+        if self.frequency == "daily":
+            return now.date() > last. date()
+        elif self.frequency == "twice_daily":
+            return (now - last).total_seconds() >= 12*3600
+        return False
+    
+    def __str__(self):
+        status = "Due" if self.is_due() else "Not Due"
+        low_stock = " (Low stock!)" if self.stock <= 5 else ""
+        last = self.last_taken.strftime("%d-%m-%Y %H:%M") if self.last_taken else "Never"
+        return (f"Medication : {self.name} \n"
+                f"Dosage: {self.dosage}, Frequency: {self.frequency.capitalize()} \n"
+                f"Stock: {self.stock} doses {low_stock} \n"
+                f"Status: {status}, Last taken: {last}"
+        )
