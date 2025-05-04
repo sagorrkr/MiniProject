@@ -40,5 +40,18 @@ class Medication:
         return (f"Medication : {self.name} \n"
                 f"Dosage: {self.dosage}, Frequency: {self.frequency.capitalize()} \n"
                 f"Stock: {self.stock} doses {low_stock} \n"
-                f"Status: {status}, Last taken: {last}"
-        )
+                f"Status: {status}, Last taken: {last}")
+    
+class MedicationTracker:
+    def __init__(self):
+        self.medication = []
+
+    def add_medication(self, name, dosage, frequency, stock):
+        valid_frequencies = ["daily", "twice_daily"]
+        if frequency.lower() not in valid_frequencies:
+            print(f"Invalid frequency. Use: {', '.join(valid_frequencies)}.")
+            return
+        for med in self.medication:
+            if med.name.lower() == name.lower():
+                print(f"Medication {name} already exist.")
+                return
