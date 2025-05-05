@@ -92,7 +92,7 @@ class MedicationTracker:
                 print(f"{med.name} : {med.dosage} dosage remaining")
 
 def main():
-    medication = Medication()
+    tracker = MedicationTracker()
 
     while True:
         choice = input("Enter your choice (1-5)")
