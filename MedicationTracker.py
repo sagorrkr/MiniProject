@@ -74,3 +74,34 @@ class MedicationTracker:
                 return
         print(f"Medication {name} not found.")
 
+    def display_medications(self):
+        if not self.medications:
+            print("No medication to display.")
+            return
+        for med in self.medications:
+            print("-" * 30)
+            print(med)
+
+    def check_stocks(self):
+        low_stock = [med for med in self.medications if med.stock < 5]
+        if not low_stock:
+            print("No medications are low on stock.")
+        else: 
+            print("\nLow stock warnings:")
+            for med in med.low_stock:
+                print(f"{med.name} : {med.dosage} dosage remaining")
+
+def main():
+    medication = Medication()
+
+    while True:
+        choice = input("Enter your choice (1-5)")
+        print("1. Add medication ")
+
+
+
+
+
+
+if __name__ == "__main__":
+    main()
