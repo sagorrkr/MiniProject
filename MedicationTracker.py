@@ -95,10 +95,12 @@ def main():
     tracker = MedicationTracker()
 
     while True:
-        choice = input("Enter your choice (1-5)")
-        print("1. Add medication ")
-
-
+        print("\nMedication Tracker Menu:")
+        print("1. Add a medication")
+        print("2. Record a dose taken")
+        print("3. Display all medications")
+        print("4. Check low stock")
+        print("5. Exit")
 
 
 
