@@ -102,6 +102,21 @@ def main():
         print("4. Check low stock")
         print("5. Exit")
 
+        choice =  input("Enter your choice(1-5):")
+        if choice == "1":
+            name = input("Enter medication name: ")
+            dosage = input("Enter dosage (e.g., 1 pill): ")
+            frequency = input("Enter frequency (daily/twice_daily): ")
+            stock = input("Enter stock (number of doses): ")
+            tracker.add_medication(name, dosage, frequency, stock)
+
+        elif choice == "2":
+            name = input("Enter medication name to record dose: ")
+            tracker.take_dose(name)
+
+        elif choice == "3":
+            tracker.display_medications()
+
 
 
 
