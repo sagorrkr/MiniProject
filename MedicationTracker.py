@@ -117,8 +117,16 @@ def main():
         elif choice == "3":
             tracker.display_medications()
 
+        elif choice == "4":
+            tracker.check_stock()
 
+        elif choice == "5":
+            print("Goodbye! Final medication summary:")
+            tracker.display_medications()
+            break
 
+        else:
+            print("Invalid choice. Please try again (1-5).")
 
 if __name__ == "__main__":
     main()
