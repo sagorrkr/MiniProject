@@ -28,7 +28,7 @@ class Medication:
         now = datetime.now()
         last = self.last_taken
         if self.frequency == "daily":
-            return now.date() > last. date()
+            return now.date() > last.date()
         elif self.frequency == "twice_daily":
             return (now - last).total_seconds() >= 12*3600
         return False
@@ -37,10 +37,10 @@ class Medication:
         status = "Due" if self.is_due() else "Not Due"
         low_stock = " (Low stock!)" if self.stock <= 5 else ""
         last = self.last_taken.strftime("%d-%m-%Y %H:%M") if self.last_taken else "Never"
-        return (f"Medication : {self.name} \n"
-                f"Dosage: {self.dosage}, Frequency: {self.frequency.capitalize()} \n"
-                f"Stock: {self.stock} doses {low_stock} \n"
-                f"Status: {status}, Last taken: {last}")
+        return (f"Medication :{self.name} \n"
+                f"Dosage:{self.dosage}, Frequency: {self.frequency.capitalize()} \n"
+                f"Stock:{self.stock} doses {low_stock} \n"
+                f"Status:{status}, Last taken: {last}")
     
 class MedicationTracker:
     def __init__(self):
@@ -51,10 +51,10 @@ class MedicationTracker:
         if frequency.lower() not in valid_frequencies:
             print(f"Invalid frequency. Use: {', '.join(valid_frequencies)}.")
             return
-        for med in self.medications:
+        '''for med in self.medications:
             if med.name.lower() == name.lower():
-                print(f"Medication {name} already exist.")
-                return  
+                print(f"Medication {name} already exists.")
+                return'''  
         try:
             stock = int(stock)
             if stock < 0:
@@ -66,6 +66,8 @@ class MedicationTracker:
         new_med = Medication(name, dosage, frequency, stock)
         self.medications.append(new_med)
         print(f"Added Medication: {name}")
+        print(f"Added medication: {name} (Total: {len(self.medications)}).") 
+
 
     def take_dose(self, name):
         for med in self.medications:
@@ -76,20 +78,21 @@ class MedicationTracker:
 
     def display_medications(self):
         if not self.medications:
-            print("No medication to display.")
+            print("No medications to display.")
             return
+        print("\nAll Medications:")
         for med in self.medications:
             print("-" * 30)
             print(med)
 
     def check_stocks(self):
-        low_stock = [med for med in self.medications if med.stock < 5]
+        low_stock = [med for med in self.medications if med.stock <= 5]
         if not low_stock:
             print("No medications are low on stock.")
         else: 
             print("\nLow stock warnings:")
-            for med in med.low_stock:
-                print(f"{med.name} : {med.dosage} dosage remaining")
+            for med in low_stock:
+                print(f"{med.name} : {med.dosage} doses remaining")
 
 def main():
     tracker = MedicationTracker()
@@ -118,7 +121,7 @@ def main():
             tracker.display_medications()
 
         elif choice == "4":
-            tracker.check_stock()
+            tracker.check_stocks()
 
         elif choice == "5":
             print("Goodbye! Final medication summary:")
@@ -130,4 +133,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
