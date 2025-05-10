@@ -22,3 +22,13 @@ class Shop:
     def __init__(self):
         self.items = []
         self.sales = []  
+
+    def add_item(self, name, price, stock):
+        for item in self.items:
+            if item.name.lower() == name.lower():
+                print(f"Item '{name}' already exists.")
+                return
+
+        new_item = Item(name, price, stock)
+        self.items.append(new_item)
+        print(f"Added item: {name}.")
