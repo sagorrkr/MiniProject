@@ -40,3 +40,17 @@ class Shop:
         new_item = Item(name, price, stock)
         self.items.append(new_item)
         print(f"Added item: {name}.")
+    def display_items(self):
+        if not self.items:
+            print("No items in inventory.")
+            return
+        print(f"\nAvailable Items ({len(self.items)}):")
+        for i, item in enumerate(self.items, 1):
+            print(f"{i}. {item}")
+
+    def process_purchase(self, selections):
+        if not self.items:
+            print("No items available for purchase.")
+            return None
+        items_purchased = []
+        total = 0.0
