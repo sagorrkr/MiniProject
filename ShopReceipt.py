@@ -40,6 +40,7 @@ class Shop:
         new_item = Item(name, price, stock)
         self.items.append(new_item)
         print(f"Added item: {name}.")
+
     def display_items(self):
         if not self.items:
             print("No items in inventory.")
