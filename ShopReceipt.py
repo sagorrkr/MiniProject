@@ -55,3 +55,25 @@ class Shop:
             return None
         items_purchased = []
         total = 0.0
+
+        for index, quantity in selections:
+            try:
+                index = int(index) - 1
+                quantity = int(quantity)
+                if index < 0 or index >= len(self.items) or quantity <= 0:
+                    print("Invalid item index or quantity.")
+                    return None
+            except ValueError:
+                print("Invalid input. Use numbers for index and quantity.")
+                return None
+            item = self.items[index]
+            if not item.reduce_stock(quantity):
+                print(f"Not enough stock for {item.name} (Available: {item.stock}).")
+                return None
+            cost = item.price * quantity
+            total += cost
+            items_purchased.append((item, quantity, cost))
+        timestamp = datetime.now()
+        transaction_id = timestamp.strftime("%Y%m%d_%H%M%S")  # Changed: Use timestamp
+        self.sales.append((items_purchased, total, timestamp, transaction_id))
+        return items_purchased, total, timestamp, transaction_id
