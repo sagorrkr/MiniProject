@@ -77,3 +77,12 @@ class Shop:
         transaction_id = timestamp.strftime("%Y%m%d_%H%M%S")  # Changed: Use timestamp
         self.sales.append((items_purchased, total, timestamp, transaction_id))
         return items_purchased, total, timestamp, transaction_id
+
+    def generate_receipt(self, items_purchased, total, timestamp, transaction_id):
+        filename = f"receipt_{transaction_id}.txt"
+        with open(filename, 'w') as f:
+            f.write(f"Shop Receipt - Transaction ID: {transaction_id}\n")
+            f.write(f"Date: {timestamp.strftime('%d-%m-%Y %H:%M:%S')}\n")
+            f.write("=" * 50 + "\n")
+            f.write(f"{'Item':<20} {'Qty':<8} {'Price':<10} {'Total':<10}\n")
+            f.write("-" * 50 + "\n")
