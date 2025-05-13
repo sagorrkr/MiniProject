@@ -77,7 +77,7 @@ class Shop:
         transaction_id = timestamp.strftime("%Y%m%d_%H%M%S")  # Changed: Use timestamp
         self.sales.append((items_purchased, total, timestamp, transaction_id))
         return items_purchased, total, timestamp, transaction_id
-
+#receipt
     def generate_receipt(self, items_purchased, total, timestamp, transaction_id):
         filename = f"receipt_{transaction_id}.txt"
         with open(filename, 'w') as f:
