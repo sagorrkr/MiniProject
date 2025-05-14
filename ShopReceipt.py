@@ -86,3 +86,11 @@ class Shop:
             f.write("=" * 50 + "\n")
             f.write(f"{'Item':<20} {'Qty':<8} {'Price':<10} {'Total':<10}\n")
             f.write("-" * 50 + "\n")
+            for item, quantity, cost in items_purchased:
+                f.write(f"{item.name:<20} {quantity:<8} ${item.price:<9.2f} ${cost:.2f}\n")
+            f.write("-" * 50 + "\n")
+            f.write(f"Grand Total: ${total:.2f}\n")
+            f.write("=" * 50 + "\n")
+            f.write("Thank you for shopping with us!\n")
+        print(f"Receipt generated: {filename}")
+        return filename
