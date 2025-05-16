@@ -94,3 +94,17 @@ class Shop:
             f.write("Thank you for shopping with us!\n")
         print(f"Receipt generated: {filename}")
         return filename
+
+    def display_sales_history(self):
+        if not self.sales:
+            print("No sales recorded.")
+            return
+        print(f"\nSales History ({len(self.sales)} transactions):")
+        for items_purchased, total, timestamp, transaction_id in self.sales:
+            print("-" * 50)
+            print(f"Transaction ID: {transaction_id}")
+            print(f"Date: {timestamp.strftime('%d-%m-%Y %H:%M:%S')}")
+            print(f"Items Purchased:")
+            for item, quantity, cost in items_purchased:
+                print(f"  {item.name}: {quantity} x ${item.price:.2f} = ${cost:.2f}")
+            print(f"Total: ${total:.2f}")
