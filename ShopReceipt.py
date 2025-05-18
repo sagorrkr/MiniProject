@@ -108,3 +108,16 @@ class Shop:
             for item, quantity, cost in items_purchased:
                 print(f"  {item.name}: {quantity} x ${item.price:.2f} = ${cost:.2f}")
             print(f"Total: ${total:.2f}")
+
+def main():
+    shop = Shop()
+
+    while True:
+        print("\nShop Management system menu: ")
+        print('1. Add item to inventory.')
+        print('2. Display inventory.')
+        print('1. Make a purchase.')
+        print('1. View history.')
+        print('1. Exit.')
+
+        choice = input("Enter your choice: ")
