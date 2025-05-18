@@ -121,4 +121,6 @@ def main():
         print('1. Exit.')
 
         choice = input("Enter your choice: ")
-        
+
+        if choice == "1":
+            
