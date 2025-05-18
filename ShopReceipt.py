@@ -123,4 +123,45 @@ def main():
         choice = input("Enter your choice: ")
 
         if choice == "1":
+            name = input("Enter item name (e.g., Laptop): ")
+            price = input("Enter price (e.g., 10.99): ")
+            stock = input("Enter stock quantity (e.g., 10): ")
+            shop.add_item(name, price, stock)
+
+        elif choice == "2":
+            shop.display_items()
+
+        elif choice == "3":
+            shop.display_items()
+            print("\nEnter items to purchase (enter 'done' when finished):")
+            selections = []
+            while True:
+                index = input("Enter item number (1, 2, etc.) or 'done': ")
+                if index.lower() == 'done':
+                    break
+                quantity = input("Enter quantity (e.g., 2): ")
+                selections.append((index, quantity))
+            if selections:
+                result = shop.process_purchase(selections)
+                if result:
+                    items_purchased, total, timestamp, transaction_id = result
+                    shop.generate_receipt(items_purchased, total, timestamp, transaction_id)
+                else:
+                    print("Purchase failed. Please try again.")
+            else:
+                print("No items selected for purchase.")
+
+        elif choice == "4":
+            shop.display_sales_history()
+
+        elif choice == "5":
+            print("Goodbye! Final inventory:")
+            shop.display_items()
+            break
+
+        else:
+            print("Invalid choice. Please try again (1-5).")
+
+if __name__ == "__main__":
+    main()
             
