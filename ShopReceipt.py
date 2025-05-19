@@ -116,9 +116,9 @@ def main():
         print("\nShop Management system menu: ")
         print('1. Add item to inventory.')
         print('2. Display inventory.')
-        print('1. Make a purchase.')
-        print('1. View history.')
-        print('1. Exit.')
+        print('3. Make a purchase.')
+        print('4. View history.')
+        print('5. Exit.')
 
         choice = input("Enter your choice: ")
 
