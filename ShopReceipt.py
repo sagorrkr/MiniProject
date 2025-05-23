@@ -1,4 +1,4 @@
-# Shop Management System for managing inventory, sales, and receipts
+# Shop Management System: An OOP example for managing inventory, sales, and receipts
 
 from datetime import datetime
 import os
@@ -21,9 +21,12 @@ class Item:
 class Shop:
     def __init__(self):
         self.items = []
-        self.sales = []  
+        self.sales = []  # List of (items_purchased, total, timestamp, transaction_id)
 
     def add_item(self, name, price, stock):
+        if not name.strip():
+            print("Item name cannot be empty.")
+            return
         for item in self.items:
             if item.name.lower() == name.lower():
                 print(f"Item '{name}' already exists.")
@@ -55,7 +58,7 @@ class Shop:
             return None
         items_purchased = []
         total = 0.0
-
+        temp_selections = []
         for index, quantity in selections:
             try:
                 index = int(index) - 1
@@ -63,31 +66,40 @@ class Shop:
                 if index < 0 or index >= len(self.items) or quantity <= 0:
                     print("Invalid item index or quantity.")
                     return None
+                item = self.items[index]
+                if quantity > item.stock:
+                    print(f"Not enough stock for {item.name} (Available: {item.stock}).")
+                    return None
+                temp_selections.append((item, quantity))
             except ValueError:
                 print("Invalid input. Use numbers for index and quantity.")
                 return None
-            item = self.items[index]
-            if not item.reduce_stock(quantity):
-                print(f"Not enough stock for {item.name} (Available: {item.stock}).")
-                return None
+        for item, quantity in temp_selections:
+            item.reduce_stock(quantity)
             cost = item.price * quantity
+            items_purchased.append((item.name, quantity, cost, item.price))
             total += cost
-            items_purchased.append((item, quantity, cost))
         timestamp = datetime.now()
-        transaction_id = timestamp.strftime("%Y%m%d_%H%M%S")  # Changed: Use timestamp
+        transaction_id = timestamp.strftime("%Y%m%d_%H%M%S")
+
+        base_filename = f"receipt_{transaction_id}"
+        filename = f"{base_filename}.txt"
+        counter = 1
+        while os.path.exists(filename):
+            filename = f"{base_filename}_{counter}.txt"
+            counter += 1
         self.sales.append((items_purchased, total, timestamp, transaction_id))
-        return items_purchased, total, timestamp, transaction_id
-#receipt
-    def generate_receipt(self, items_purchased, total, timestamp, transaction_id):
-        filename = f"receipt_{transaction_id}.txt"
+        return items_purchased, total, timestamp, transaction_id, filename
+
+    def generate_receipt(self, items_purchased, total, timestamp, transaction_id, filename):
         with open(filename, 'w') as f:
             f.write(f"Shop Receipt - Transaction ID: {transaction_id}\n")
             f.write(f"Date: {timestamp.strftime('%d-%m-%Y %H:%M:%S')}\n")
             f.write("=" * 50 + "\n")
             f.write(f"{'Item':<20} {'Qty':<8} {'Price':<10} {'Total':<10}\n")
             f.write("-" * 50 + "\n")
-            for item, quantity, cost in items_purchased:
-                f.write(f"{item.name:<20} {quantity:<8} ${item.price:<9.2f} ${cost:.2f}\n")
+            for item_name, quantity, cost, price in items_purchased:
+                f.write(f"{item_name:<20} {quantity:<8} ${price:<9.2f} ${cost:.2f}\n")
             f.write("-" * 50 + "\n")
             f.write(f"Grand Total: ${total:.2f}\n")
             f.write("=" * 50 + "\n")
@@ -105,27 +117,39 @@ class Shop:
             print(f"Transaction ID: {transaction_id}")
             print(f"Date: {timestamp.strftime('%d-%m-%Y %H:%M:%S')}")
             print(f"Items Purchased:")
-            for item, quantity, cost in items_purchased:
-                print(f"  {item.name}: {quantity} x ${item.price:.2f} = ${cost:.2f}")
+            for item_name, quantity, cost, price in items_purchased:
+                print(f"  {item_name}: {quantity} x ${price:.2f} = ${cost:.2f}")
             print(f"Total: ${total:.2f}")
 
 def main():
     shop = Shop()
 
     while True:
-        print("\nShop Management system menu: ")
-        print('1. Add item to inventory.')
-        print('2. Display inventory.')
-        print('3. Make a purchase.')
-        print('4. View history.')
-        print('5. Exit.')
+        print("\nShop Management System Menu:")
+        print("1. Add item to inventory")
+        print("2. Display inventory")
+        print("3. Make a purchase")
+        print("4. View sales history")
+        print("5. Exit")
 
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice (1-5): ").strip()
+        if not choice:
+            print("Choice cannot be empty. Please try again (1-5).")
+            continue
 
         if choice == "1":
-            name = input("Enter item name (e.g., Laptop): ")
-            price = input("Enter price (e.g., 10.99): ")
-            stock = input("Enter stock quantity (e.g., 10): ")
+            name = input("Enter item name (e.g., Laptop): ").strip()
+            if not name:
+                print("Item name cannot be empty.")
+                continue
+            price = input("Enter price (e.g., 10.99): ").strip()
+            if not price:
+                print("Price cannot be empty.")
+                continue
+            stock = input("Enter stock quantity (e.g., 10): ").strip()
+            if not stock:
+                print("Stock cannot be empty.")
+                continue
             shop.add_item(name, price, stock)
 
         elif choice == "2":
@@ -136,16 +160,22 @@ def main():
             print("\nEnter items to purchase (enter 'done' when finished):")
             selections = []
             while True:
-                index = input("Enter item number (1, 2, etc.) or 'done': ")
+                index = input("Enter item number (1, 2, etc.) or 'done': ").strip()
                 if index.lower() == 'done':
                     break
-                quantity = input("Enter quantity (e.g., 2): ")
+                if not index:
+                    print("Item number cannot be empty.")
+                    continue
+                quantity = input("Enter quantity (e.g., 2): ").strip()
+                if not quantity:
+                    print("Quantity cannot be empty.")
+                    continue
                 selections.append((index, quantity))
             if selections:
                 result = shop.process_purchase(selections)
                 if result:
-                    items_purchased, total, timestamp, transaction_id = result
-                    shop.generate_receipt(items_purchased, total, timestamp, transaction_id)
+                    items_purchased, total, timestamp, transaction_id, filename = result
+                    shop.generate_receipt(items_purchased, total, timestamp, transaction_id, filename)
                 else:
                     print("Purchase failed. Please try again.")
             else:
@@ -155,13 +185,16 @@ def main():
             shop.display_sales_history()
 
         elif choice == "5":
-            print("Goodbye! Final inventory:")
-            shop.display_items()
-            break
+            confirm = input("Are you sure you want to exit? (yes/no): ").strip().lower()
+            if confirm == 'yes':
+                print("Goodbye! Final inventory:")
+                shop.display_items()
+                break
+            else:
+                print("Exit cancelled.")
 
         else:
             print("Invalid choice. Please try again (1-5).")
 
 if __name__ == "__main__":
     main()
-            
